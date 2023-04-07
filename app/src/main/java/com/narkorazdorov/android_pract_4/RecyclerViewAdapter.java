@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<MediaHolder> {
-    private List<Item> items;
+    private List<Product> products;
 
-    interface MyOnItemClickListener{
-        void onClick(Item item, int position);
+    interface OnProductClickListener{
+        void onClick(Product product, int position);
     }
-    private final MyOnItemClickListener myOnItemClickListener;
-    public RecyclerViewAdapter(List<Item> items, MyOnItemClickListener myOnItemClickListener) {
-        this.items = items;
-        this.myOnItemClickListener = myOnItemClickListener;
+    private final OnProductClickListener onProductClickListener;
+    public RecyclerViewAdapter(List<Product> products, OnProductClickListener productClickListener) {
+        this.products = products;
+        this.onProductClickListener = productClickListener;
     }
 
     @NonNull
@@ -26,25 +26,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MediaHolder> {
     public MediaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_layout, parent, false);
-        MediaHolder viewHolder = new MediaHolder(view);
-        return viewHolder;
+        return new MediaHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MediaHolder holder, int position) {
-        Item item = items.get(position);
-        holder.textView.setText(item.getArtistName());
-        holder.imageView.setImageResource(item.getImageResourceId());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myOnItemClickListener.onClick(item,holder.getAdapterPosition());
-            }
-        });
+        Product product = products.get(position);
+        holder.productTitle.setText(product.getProductTitle());
+        holder.productAmount.setText(product.getProductAmount());
+        holder.productPrice.setText(product.getProductPrice());
+        holder.productImage.setImageResource(product.getProductImageId());
+        holder.itemView.setOnClickListener(v -> onProductClickListener.onClick(product,holder.getAdapterPosition()));
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return products.size();
     }
 }

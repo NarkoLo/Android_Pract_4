@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Android_Pract_4</string>
+    <string name="button_add_to_basket">add to basket</string>
+    <string name="item_amount">amount</string>
 </resources>
