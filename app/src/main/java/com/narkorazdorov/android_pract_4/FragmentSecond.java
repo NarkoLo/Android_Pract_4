@@ -38,7 +38,8 @@ public class FragmentSecond extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Log.i("RecyclerView", "Selected item: " + position);
+                Toast.makeText(getContext(), "Selected product number: " + position, Toast.LENGTH_SHORT).show();
             }
         });
 

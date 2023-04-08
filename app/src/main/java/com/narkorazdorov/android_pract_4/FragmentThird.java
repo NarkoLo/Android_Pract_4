@@ -32,7 +32,11 @@ public class FragmentThird extends Fragment {
         RecyclerViewAdapter.OnProductClickListener listener = new RecyclerViewAdapter.OnProductClickListener() {
             @Override
             public void onClick(Product product, int position) {
-
+                Log.i("RecyclerView", "Selected item: " + position +
+                        "\nTitle: " +  product.getProductTitle() +
+                        "\nPrice: " + product.getProductPrice() +
+                        "\nAmount " + product.getProductAmount());
+                Toast.makeText(getContext(), "Selected product number: " + position, Toast.LENGTH_SHORT).show();
             }
         };
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
